@@ -1,84 +1,70 @@
-import os
-import openai
-import tiktoken
-from dotenv import load_dotenv, find_dotenv
-_ = load_dotenv(find_dotenv()) # read local .env file
-
-openai.api_key = os.environ['OPENAI_API_KEY']
-
-# print(os.environ['OPENAI_API_KEY'])
-
-# helper function
-# use gpt-3.5-turbo
-# please see https://platform.openai.com/docs/models
-
-def get_completion(prompt, model="gpt-3.5-turbo"):
-    try:
-        messages = [{"role": "user", "content": prompt}]
-        response = openai.ChatCompletion.create(
-            model=model,
-            messages=messages,
-            temperature=0,
-        )
-        return response.choices[0].message["content"]
-
-    except openai.error.APIError as e:
-        # Handle API error here, e.g. retry or log
-        print(f"OpenAI API returned an API Error: {e}")
-        pass
-
-    except openai.error.APIConnectionError as e:
-        # Handle connection error here
-        print(f"Failed to connect to OpenAI API: {e}")
-        pass
-
-    except openai.error.RateLimitError as e:
-        # Handle rate limit error (we recommend using exponential backoff)
-        print(f"OpenAI API request exceeded rate limit: {e}")
-        pass
-
+from helper import get_completion, get_chat_completion
 
 # 1. simple question
 
-response1 = get_completion("What is the capital of California?")
-print(response1)
+response1_by_prompt = get_completion("What is the capital of California?")
+print(response1_by_prompt)
+
+response1_by_chat = get_chat_completion([{"role": "user", "content": "What is the capital of California?"}])
+print(response1_by_chat)
+
+# compare the differences:
 
 """
-output:
+output from response1_by_prompt:
+Sacramento.
+"""
+
+"""
+output from response1_by_chat:
 The capital of California is Sacramento.
 """
 
 
-
-
-
 # 2. grammar correction
 
-response2 = get_completion("correct this to satndard English: ```Please help check this bug for me```")
-print(response2)
+response2_by_prompt = get_completion("correct this to satndard English: ```Please help check this bug for me```")
+print(response2_by_prompt)
+
+response2_by_chat = get_chat_completion([{"role": "user", "content": "correct this to satndard English: ```Please help check this bug for me```"}])
+print(response2_by_chat)
+
+# compare the differences:
 
 """
-output:
+output from response2_by_prompt:
+Please help me check this bug.
+"""
+
+"""
+output from response2_by_chat:
 Please help me check this bug.
 """
 
 
 
-
-
-
 # 3. text to emoji
 
-response3 = get_completion("convert the following sentenses into emoji 'the firefighter is so brave', 'I like boba tea', 'sigh'")
-print(response3)
+response3_by_prompt = get_completion("convert the following sentenses into emoji 'the firefighter is so brave', 'I like boba tea', 'sigh'")
+print(response3_by_prompt)
+print("----")
+
+response3_by_chat = get_chat_completion([{"role": "user", "content": "convert the following sentenses into emoji 'the firefighter is so brave', 'I like boba tea', 'sigh'"}])
+print(response3_by_chat)
+
+# compare the differences:
 
 """
-output:
+
+
+👨‍🚒🙌😍
+"""
+
+"""
 👨‍🚒💪😎 (the firefighter is so brave)
 👍😋🍵 (I like boba tea)
 😔😞 (sigh)
 """
-
 
 # 4. query a result and format
 
@@ -145,4 +131,5 @@ output:
 Dear Amber, thank you for being there for me in college. Wishing you a bright future ahead. - [Your Name]
 105
 """
+
 

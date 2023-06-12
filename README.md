@@ -13,22 +13,16 @@ pip3 install load_dotenv
 pip3 install openai
 ```
 
-## File
-
-1. 01_single_turn_tasks.py
-
-as chatGPT accepts a list of messsage as input and generates messages as output,
-but this file is a simple practice to try single-turn tasks without any conversation.
-
-
-2. 02_multi_turn_conversations.py
-
-a simple practice to try multiple conversation
-
-
-
 ## Resources
 
 * [best strategies](https://platform.openai.com/docs/guides/gpt-best-practices/six-strategies-for-getting-better-results)
 * [usage example](https://platform.openai.com/examples)
 * [LEARN GENERATIVE AI Short Courses in https://www.deeplearning.ai](https://www.deeplearning.ai/short-courses/)
+
+
+## Notes:
+
+1. `Chat completions` vs `Completions`?
+
+- Completions takes a single string as input, however chat completions is given dialog and response the result with specfic format.
+- chat completions using a list of messages; completions use a freeform text string called prompt.
