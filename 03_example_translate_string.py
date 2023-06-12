@@ -76,34 +76,7 @@ virtual-private-network: rete privata virtuale (VPN)
 """
 
 
-
-
-# 3. asking chatGPT to translate with simple listing and order the result
-
-text_2 = f"""
-virtual-private-network: virtual private network (VPN)
-"""
-prompt = f"""
-
-translate the text written in english which delimited by triple quotes \
-into other languages including French, Spinish, German, Portuguese, Romanian and Italian.
-please present the language code belongs to the language and format the output as JSOM format like:
-
-{
-    "key": "virtual-private-network",
-    "display": "virtual private network (VPN)"
-}
-
-
-please include the english one in the result.
-\"\"\"{text_2}\"\"\"
-"""
-response = get_completion(prompt)
-print("Completion for Text 2:")
-print(response)
-
-
-# 4. asking chatGPT to translate with simple listing and return as JSON
+# 3. asking chatGPT to translate with simple listing and return as JSON
 
 text_2 = f"""
 virtual-private-network: virtual private network (VPN)
@@ -168,7 +141,7 @@ Completion for Text 2:
 """
 
 
-# 5. use <> in indicate the format we want:
+# 4. use <> to indicate the format we want:
 
 text_2 = f"""
 virtual-private-network: virtual private network (VPN)
