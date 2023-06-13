@@ -23,18 +23,18 @@ pip3 install openai
 
 1. `Chat completions` vs `Completions`?
 
-- Completions takes a single string as input, however chat completions is given dialog and response the result with specfic format.
-- chat completions using a list of messages; completions use a freeform text string called prompt.
+    - Completions takes a single string as input, however chat completions is given dialog and response the result with specfic format.
+    - chat completions using a list of messages; completions use a freeform text string called prompt.
 
 2. role system vs assistant vs user
 
-- system -> used to guide the assistant's behavior or tone, e.g.:
+    - system -> used to guide the assistant's behavior or tone, e.g.:
 
-```js
-{'role':'system', 'content': 'You are an assistant that speaks like Shakespeare.'}
-{'role':'system', 'content': 'You are a helpful assistant.'}
-{'role':'system', 'content': 'All your response must use emoji'}
-```
+    ```js
+    {'role':'system', 'content': 'You are an assistant that speaks like Shakespeare.'}
+    {'role':'system', 'content': 'You are a helpful assistant.'}
+    {'role':'system', 'content': 'All your response must use emoji'}
+    ```
 
-- assistant -> LLM response
-- user -> prompt
+    - assistant -> LLM response
+    - user -> prompt

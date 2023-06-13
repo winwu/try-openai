@@ -108,3 +108,27 @@ def get_chat_completion(messages, model="gpt-3.5-turbo", temperature=0, max_toke
         # Handle rate limit error (we recommend using exponential backoff)
         print(f"OpenAI API request exceeded rate limit: {e}")
         pass
+
+
+def get_moderation(input, model="gpt-3.5-turbo", max_tokens=1):
+    try:
+        response = openai.Moderation.create(
+            input=input,
+            max_tokens=max_tokens,
+        )
+        return response['results'][0]
+
+    except openai.error.APIError as e:
+        # Handle API error here, e.g. retry or log
+        print(f"OpenAI API returned an API Error: {e}")
+        pass
+
+    except openai.error.APIConnectionError as e:
+        # Handle connection error here
+        print(f"Failed to connect to OpenAI API: {e}")
+        pass
+
+    except openai.error.RateLimitError as e:
+        # Handle rate limit error (we recommend using exponential backoff)
+        print(f"OpenAI API request exceeded rate limit: {e}")
+        pass
