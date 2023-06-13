@@ -132,3 +132,27 @@ def get_moderation(input, model="gpt-3.5-turbo", max_tokens=1):
         # Handle rate limit error (we recommend using exponential backoff)
         print(f"OpenAI API request exceeded rate limit: {e}")
         pass
+
+
+
+# size accepts 256x256, 512x512, or 1024x1024 pixels
+def gen_image(prompt, n=1, size="256x256"):
+    response = openai.Image.create(
+        prompt=prompt,
+        n=n,
+        size=size
+    )
+    
+    # response format example:
+    """
+    {
+        "created": 1686635082,
+        "data": [
+            {
+            "url": ""
+            }
+        ]
+        }
+    """
+    image_url = response['data'][0]['url']
+    return image_url
