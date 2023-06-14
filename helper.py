@@ -134,7 +134,6 @@ def get_moderation(input, model="gpt-3.5-turbo", max_tokens=1):
         pass
 
 
-
 # size accepts 256x256, 512x512, or 1024x1024 pixels
 def gen_image(prompt, n=1, size="256x256"):
     response = openai.Image.create(
@@ -156,3 +155,20 @@ def gen_image(prompt, n=1, size="256x256"):
     """
     image_url = response['data'][0]['url']
     return image_url
+
+
+def audio_to_text(audiofile):
+    response = openai.Audio.transcribe(
+        "whisper-1",
+        audiofile
+    )
+
+    # response format example:
+    """
+    {
+        "text": "Today was a perfect day, I ate delicious burger steak curry and helped my colleagues solve problems at work."
+    }
+    """
+
+    return response.text
+    
