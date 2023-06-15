@@ -17,6 +17,7 @@ pip3 install openai
 * [best strategies](https://platform.openai.com/docs/guides/gpt-best-practices/six-strategies-for-getting-better-results)
 * [usage example](https://platform.openai.com/examples)
 * [LEARN GENERATIVE AI Short Courses in https://www.deeplearning.ai](https://www.deeplearning.ai/short-courses/)
+* [https://platform.openai.com/tokenizer](https://platform.openai.com/tokenizer)
 
 
 ## Learning Notes:
